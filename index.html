@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#120a09">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SlopCloud">
+  <title>SlopCloud</title>
+  <meta name="description" content="Listen to Sloppy Joes on SlopCloud.">
+  <meta property="og:title" content="SlopCloud">
+  <meta property="og:description" content="Listen to Sloppy Joes on SlopCloud.">
+  <meta property="og:type" content="music.musician">
+  <meta property="og:image" content="music/artist.jpg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="paused">
+  <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <div id="app">
+    <main id="view" class="view"></main>
+
+    <div id="mini" hidden data-np-open>
+      <div class="disc" id="mini-cover"></div>
+      <div class="meta">
+        <div class="t" id="mini-title"></div>
+        <div class="s" id="mini-artist"></div>
+      </div>
+      <button class="icon-btn" data-toggle data-role="playpause" aria-label="Play"></button>
+      <button class="icon-btn" data-next data-icon="next" aria-label="Next"></button>
+      <div class="mini-progress"><i id="mini-bar"></i></div>
+    </div>
+
+    <nav id="tabbar">
+      <a href="#/" data-tab="songs"><span data-icon="note"></span>Songs</a>
+      <a href="#/board" data-tab="board"><span data-icon="pen"></span>Write It Down</a>
+    </nav>
+  </div>
+
+  <section id="np" class="np" aria-hidden="true">
+    <div class="np-bg" id="np-bg"></div>
+    <div class="np-inner">
+      <header class="np-top">
+        <button class="icon-btn" data-np-close data-icon="down" aria-label="Close player"></button>
+        <span class="np-label">Now playing</span>
+        <button class="icon-btn" data-share-current data-icon="share" aria-label="Share song"></button>
+      </header>
+      <div class="np-art"><div id="np-cover"></div></div>
+      <div class="np-meta">
+        <h2 id="np-title"></h2>
+        <p id="np-artist"></p>
+      </div>
+      <div class="np-progress">
+        <input id="np-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
+        <div class="times"><span id="np-cur">0:00</span><span id="np-dur">0:00</span></div>
+      </div>
+      <div class="np-controls">
+        <button class="icon-btn" id="np-shuffle" data-shuffle data-icon="shuffle" aria-label="Shuffle"></button>
+        <button class="icon-btn lg" data-prev data-icon="prev" aria-label="Previous"></button>
+        <button class="np-play" data-toggle data-role="playpause" aria-label="Play"></button>
+        <button class="icon-btn lg" data-next data-icon="next" aria-label="Next"></button>
+        <button class="icon-btn" id="np-repeat" data-repeat aria-label="Repeat"></button>
+      </div>
+    </div>
+  </section>
+
+  <div id="sheet" class="sheet" aria-hidden="true">
+    <div class="sheet-backdrop" data-sheet-close></div>
+    <div class="sheet-panel">
+      <div class="sheet-head" id="sheet-head"></div>
+      <div class="sheet-items" id="sheet-items"></div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script src="music.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
